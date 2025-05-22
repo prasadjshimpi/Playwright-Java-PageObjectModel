@@ -15,7 +15,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<playwright-version>1.51.0</playwright-version>
+		<playwright-version>1.52.0</playwright-version>
 		<testng-version>7.11.0</testng-version>
 		<extentreports-version>5.1.2</extentreports-version>
 		<mavencompilerplugin-version>3.14.0</mavencompilerplugin-version>
@@ -41,6 +41,11 @@
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>${extentreports-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.32.0</version>
 		</dependency>
 
 
@@ -68,7 +73,7 @@
 				<configuration>
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
-					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+					<!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/testrunners/testng_regressions.xml</suiteXmlFile>
 						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
