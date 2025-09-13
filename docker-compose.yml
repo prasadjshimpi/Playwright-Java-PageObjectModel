@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Chrome Tests
+  playwright-chrome:
+    build: .
+    container_name: playwright-chrome
+    environment:
+      - BROWSER=chrome
+      - HEADLESS=true
+      - ENVIRONMENT=qa
+    volumes:
+      - ./target:/app/target
+      - ./test-results:/app/test-results
+    networks:
+      - playwright-network
+
+  # Firefox Tests
+  playwright-firefox:
+    build: .
+    container_name: playwright-firefox
+    environment:
+      - BROWSER=firefox
+      - HEADLESS=true
+      - ENVIRONMENT=qa
+    volumes:
+      - ./target:/app/target
+      - ./test-results:/app/test-results
+    networks:
+      - playwright-network
+
+  # WebKit Tests
+  playwright-webkit:
+    build: .
+    container_name: playwright-webkit
+    environment:
+      - BROWSER=webkit
+      - HEADLESS=true
+      - ENVIRONMENT=qa
+    volumes:
+      - ./target:/app/target
+      - ./test-results:/app/test-results
+    networks:
+      - playwright-network
+
+  # Report Server (Optional)
+  report-server:
+    image: nginx:alpine
+    container_name: report-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./target/chaintest:/usr/share/nginx/html/chaintest
+      - ./target/site/allure-maven-plugin:/usr/share/nginx/html/allure
+    depends_on:
+      - playwright-chrome
+      - playwright-firefox
+      - playwright-webkit
+    networks:
+      - playwright-network
+
+networks:
+  playwright-network:
+    driver: bridge
+
+volumes:
+  test-results:
+  target-volume: 

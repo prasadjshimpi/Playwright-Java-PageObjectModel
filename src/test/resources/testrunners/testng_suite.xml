@@ -1,166 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Parallel test" thread-count="4" parallel="tests" verbose="4">
+<suite name="Playwright Parallel Tests" thread-count="4" parallel="tests" verbose="4">
 
-	<test name="Test1">
+	<test name="HomePage Tests">
 		<classes>
-			<class name="examples.GridHeadlessTest" />
+			<class name="com.qa.opencart.tests.HomePageTest" />
 		</classes>
 	</test>
-	<test name="Test2">
+	<test name="LoginPage Tests">
 		<classes>
-			<class name="examples.GridHeadlessTest2" />
+			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-	<test name="Test3">
+	<test name="HomePage Tests 2">
 		<classes>
-			<class name="examples.GridHeadlessTest3" />
+			<class name="com.qa.opencart.tests.HomePageTest" />
 		</classes>
 	</test>
-	<test name="Test4">
+	<test name="LoginPage Tests 2">
 		<classes>
-			<class name="examples.GridHeadlessTest4" />
+			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-	<test name="Test5">
+	<!-- Simplified to 8 tests for better performance -->
+	<test name="HomePage Test 3">
 		<classes>
-			<class name="examples.GridHeadlessTest" />
+			<class name="com.qa.opencart.tests.HomePageTest" />
 		</classes>
 	</test>
-	<test name="Test6">
+	<test name="LoginPage Test 3">
 		<classes>
-			<class name="examples.GridHeadlessTest2" />
+			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-	<test name="Test7">
+	<test name="HomePage Test 4">
 		<classes>
-			<class name="examples.GridHeadlessTest3" />
+			<class name="com.qa.opencart.tests.HomePageTest" />
 		</classes>
 	</test>
-	<test name="Test8">
+	<test name="LoginPage Test 4">
 		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test9">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test10">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test11">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test12">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test13">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test14">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test15">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test16">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test17">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test18">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test19">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test20">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test21">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test22">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test23">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test24">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test25">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test26">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test27">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test28">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
-		</classes>
-	</test>
-	<test name="Test29">
-		<classes>
-			<class name="examples.GridHeadlessTest" />
-		</classes>
-	</test>
-	<test name="Test30">
-		<classes>
-			<class name="examples.GridHeadlessTest2" />
-		</classes>
-	</test>
-	<test name="Test31">
-		<classes>
-			<class name="examples.GridHeadlessTest3" />
-		</classes>
-	</test>
-	<test name="Test32">
-		<classes>
-			<class name="examples.GridHeadlessTest4" />
+			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
 </suite>

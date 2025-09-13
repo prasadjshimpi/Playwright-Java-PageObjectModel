@@ -15,16 +15,25 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<playwright-version>1.52.0</playwright-version>
-		<testng-version>7.11.0</testng-version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<playwright-version>1.55.0</playwright-version>
+		<testng-version>7.10.2</testng-version>
 		<extentreports-version>5.1.2</extentreports-version>
-		<mavencompilerplugin-version>3.14.0</mavencompilerplugin-version>
+		<chaintest-version>1.0.7</chaintest-version>
+		<allure-version>2.25.0</allure-version>
+		<assertj-version>3.25.1</assertj-version>
+		<logback-version>1.4.14</logback-version>
+		<jackson-version>2.17.0</jackson-version>
+		<datafaker-version>2.1.0</datafaker-version>
+		<mavencompilerplugin-version>3.13.0</mavencompilerplugin-version>
 		<mavensurefireplugin-version>3.5.3</mavensurefireplugin-version>
 
 	</properties>
 
 	<dependencies>
 
+		<!-- Core Testing Framework -->
 		<dependency>
 			<groupId>com.microsoft.playwright</groupId>
 			<artifactId>playwright</artifactId>
@@ -37,57 +46,120 @@
 			<version>${testng-version}</version>
 		</dependency>
 
+		<!-- Modern Reporting - ChainTest (ExtentReports successor) - Temporarily disabled -->
+		<!--<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>chaintest-testng</artifactId>
+			<version>${chaintest-version}</version>
+		</dependency>-->
+
+		<!-- Allure Reporting -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>${allure-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.freemarker</groupId>
+					<artifactId>freemarker</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Fix Freemarker version conflict -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.33</version>
+		</dependency>
+
+		<!-- Enhanced Assertions -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj-version}</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-version}</version>
+		</dependency>
+		
+		<!-- SLF4J API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.11</version>
+		</dependency>
+
+		<!-- Configuration Management -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>${jackson-version}</version>
+		</dependency>
+
+		<!-- Test Data Generation -->
+		<dependency>
+			<groupId>net.datafaker</groupId>
+			<artifactId>datafaker</artifactId>
+			<version>${datafaker-version}</version>
+		</dependency>
+
+		<!-- Keep ExtentReports for backward compatibility (can be removed later) -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>${extentreports-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.32.0</version>
-		</dependency>
-
-
 
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- Maven Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>${mavencompilerplugin-version}</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 
-
+			<!-- Maven Surefire Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20</version>
-
+				<version>${mavensurefireplugin-version}</version>
 				<configuration>
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
-					<!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+					<argLine>-Xmx2048m -XX:+UseG1GC</argLine>
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/testrunners/testng_regressions.xml</suiteXmlFile>
-						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
-
 					</suiteXmlFiles>
-
-
-
+					<systemPropertyVariables>
+						<allure.results.directory>target/allure-results</allure.results.directory>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 
-
-
-
+			<!-- Allure Maven Plugin -->
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.12.0</version>
+				<configuration>
+					<reportVersion>${allure-version}</reportVersion>
+					<resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+					<reportDirectory>${project.build.directory}/site/allure-maven-plugin</reportDirectory>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>

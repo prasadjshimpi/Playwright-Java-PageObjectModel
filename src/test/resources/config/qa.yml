@@ -1,0 +1,54 @@
+# QA Environment Configuration
+application:
+  base_url: "https://naveenautomationlabs.com/opencart/"
+  name: "OpenCart QA"
+  version: "2.0"
+
+browser:
+  type: "chrome"
+  headless: false
+  timeout: 30
+  slow_mo: 0
+  viewport:
+    width: 1920
+    height: 1080
+
+test_execution:
+  parallel: true
+  thread_count: 3
+  retry_count: 2
+  screenshot_on_failure: true
+  video_recording: false
+
+credentials:
+  default_user:
+    username: "prasadjs86@gmail.com"
+    password: "Selenium@12345"
+  admin_user:
+    username: "admin@opencart.com"
+    password: "admin123"
+
+timeouts:
+  page_load: 30
+  element_wait: 10
+  api_response: 15
+
+reporting:
+  chaintest:
+    enabled: true
+    dark_theme: true
+  allure:
+    enabled: true
+    screenshot_on_pass: false
+    screenshot_on_failure: true
+
+database:
+  enabled: false
+  host: "localhost"
+  port: 3306
+  name: "opencart_qa"
+
+api:
+  base_url: "https://api.naveenautomationlabs.com"
+  timeout: 30
+  retry_count: 3 
